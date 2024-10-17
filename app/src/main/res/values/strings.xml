@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">E1T5_MOB</string>
+    <string name="registrarse_button">Registrarse</string>
+    <string name="login_button">Login</string>
+
+    <string name="logo_description">Logo</string>
+    <string name="registro_title">REGISTRO</string>
+    <string name="nombre_label">Nombre:</string>
+    <string name="edit_text_hint">Introduce tu nombre</string>
+    <string name="apellido_label">Apellido:</string>
+    <string name="edit_text_hint2">Introduce tu apellido</string>
 </resources>
