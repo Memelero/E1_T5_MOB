@@ -96,5 +96,33 @@
         tools:layout_editor_absoluteY="200dp"
         android:autofillHints="address"/>
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="99dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="44dp"
+
+        android:autoSizeTextType="uniform"
+        android:text="@string/fecha_label"
+        android:textColor="#762E10"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        tools:ignore="MissingConstraints,UnusedAttribute"
+        tools:layout_editor_absoluteX="40dp" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="#FFFFFF"
+        android:textColor="#762E10"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintTop_toBottomOf="@id/editTextText2"
+        android:hint="@string/edit_text_hint3"
+        tools:layout_editor_absoluteX="171dp"
+        tools:ignore="MissingConstraints"
+        android:autofillHints="date"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

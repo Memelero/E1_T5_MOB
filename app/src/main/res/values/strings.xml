@@ -9,4 +9,6 @@
     <string name="edit_text_hint">Introduce tu nombre</string>
     <string name="apellido_label">Apellido:</string>
     <string name="edit_text_hint2">Introduce tu apellido</string>
+    <string name="fecha_label">Fecha Nacimiento:</string>
+    <string name="edit_text_hint3">Introduce tu fecha</string>
 </resources>
