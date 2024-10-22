@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">E1_T5_MOB</string>
+    <!--MAIN -->
+    <string name="app_name">E1T5_MOB</string>
+    <string name="registrarse_button">Registrarse</string>
+    <string name="login_button">Login</string>
+
+    <!--REGISTRO -->
+    <string name="logo_description">Logo</string>
+    <string name="registro_title">REGISTRO</string>
+    <string name="nombre_label">Nombre:</string>
+    <string name="edit_text_hint">Introduce tu nombre</string>
+    <string name="apellido_label">Apellido:</string>
+    <string name="edit_text_hint2">Introduce tu apellido</string>
+    <string name="fecha_label">Fecha Nacimiento:</string>
+    <string name="edit_text_hint3">Introduce tu fecha</string>
+    <string name="email_label">Email:</string>
+    <string name="edit_text_hint4">Introduce tu email</string>
+    <string name="contraseña_label">Contraseña:</string>
+    <string name="edit_text_hint5">Introduce tu contraseña</string>
+    <string name="registrarse1_button">Registrarse</string>
+    <string name="cuenta_label">¿Ya tienes cuenta?</string>
+
+    <!--LOGIN -->
+    <string name="email_label2">Email:</string>
+    <string name="contraseña_label2">Contraseña:</string>
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="edit_text_hint1.1">Introduce tu email</string>
+    <string name="edit_text_hint2.2">Introduce tu contraseña</string>
+    <string name="login2_button">Iniciar sesión</string>
 </resources>
