@@ -29,4 +29,7 @@
     <string name="edit_text_hint1.1">Introduce tu email</string>
     <string name="edit_text_hint2.2">Introduce tu contraseña</string>
     <string name="login2_button">INICIAR SESION</string>
+
+
+
 </resources>
