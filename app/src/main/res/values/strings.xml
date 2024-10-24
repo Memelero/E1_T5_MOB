@@ -27,4 +27,12 @@
     <string name="edit_text_hint1.1">Introduce tu email</string>
     <string name="edit_text_hint2.2">Introduce tu contraseña</string>
     <string name="login2_button">Iniciar sesión</string>
+
+    <!--PERFIL -->
+    <string name="perfil_title">PERFIL</string>
+    <string name="nombre_perfil">Nombre:</string>
+    <string name="apellido_perfil">Apellido:</string>
+    <string name="fecha_perfil">Fecha:</string>
+    <string name="email_perfil">Email:</string>
+    <string name="color_button">CLARO/OSCURO</string>
 </resources>
