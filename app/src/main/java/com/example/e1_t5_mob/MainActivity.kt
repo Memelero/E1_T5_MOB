@@ -15,14 +15,14 @@ class MainActivity : AppCompatActivity() {
 
         val btnRegistro = findViewById<Button>(R.id.btnRegistro)
         btnRegistro.setOnClickListener {
-            //cambiar de ventana
+            //ventana registro
             val intent = Intent(this, RegistroActivity::class.java)
             startActivity(intent)
         }
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         btnLogin.setOnClickListener {
-            //cambiar de ventana
+            //ventana login
             val intent2 = Intent(this, LoginActivity::class.java)
             startActivity(intent2)
         }
