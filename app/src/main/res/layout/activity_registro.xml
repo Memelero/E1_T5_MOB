@@ -7,6 +7,8 @@
     tools:context="com.example.e1_t5_mob.RegistroActivity"
     android:background="@drawable/fondo">
 
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="69dp"
@@ -26,181 +28,127 @@
         android:layout_marginEnd="30dp"
         android:text="@string/registro_title"
         android:textColor="#762B2B"
+        android:fontFamily="@font/agdasima_bold"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="91dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-
-        android:text="@string/nombre_label"
-        android:textColor="#762E10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
-        tools:ignore="UnusedAttribute"
-        tools:textSize="18sp" />
-
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginStart="20dp"
 
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="104dp"
         android:autofillHints="name"
-        android:background="@android:color/transparent"
         android:ems="10"
 
+        android:fontFamily="@font/agdasima_normal"
         android:hint="@string/edit_text_hint"
         android:inputType="text"
-        android:textColor="@color/white"
+        android:textColor="@color/red"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@id/registroTextView"
         tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="99dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
-
-        android:text="@string/apellido_label"
-        android:textColor="#762E10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        tools:ignore="MissingConstraints,UnusedAttribute"
-        tools:textSize="18sp" />
 
     <EditText
         android:id="@+id/editTextText2"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         android:autofillHints="address"
-        android:background="@color/material_dynamic_neutral80"
+
         android:ems="10"
+        android:fontFamily="@font/agdasima_normal"
         android:hint="@string/edit_text_hint2"
         android:inputType="text"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/red"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextText"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="99dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
-
-        android:text="@string/fecha_label"
-        android:textColor="#762E10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
-        tools:ignore="MissingConstraints,UnusedAttribute"
-        tools:textSize="18sp" />
     <EditText
         android:id="@+id/editTextdate"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
+
         android:autofillHints="address"
-        android:background="@color/material_dynamic_neutral80"
+
         android:ems="10"
+        android:fontFamily="@font/agdasima_normal"
         android:hint="@string/edit_text_hint3"
         android:inputType="date"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/red"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextText2"
         tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="99dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
-
-        android:text="@string/email_label"
-        android:textColor="#762E10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView3"
-        tools:ignore="MissingConstraints,UnusedAttribute"
-        tools:textSize="18sp" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
+
         android:autofillHints="address"
-        android:background="@color/material_dynamic_neutral80"
+
         android:ems="10"
+        android:fontFamily="@font/agdasima_normal"
         android:hint="@string/edit_text_hint4"
         android:inputType="textEmailAddress"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/red"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextdate"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="111dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
-        android:autoSizeTextType="uniform"
-        android:text="@string/contraseña_label"
-        android:textColor="#762E10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView4"
-        tools:ignore="MissingConstraints,UnusedAttribute"
-        tools:textSize="18sp" />
     <EditText
         android:id="@+id/editTextNumberPassword"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
+
         android:autofillHints="password"
-        android:background="@color/material_dynamic_neutral80"
+
         android:ems="10"
+        android:fontFamily="@font/agdasima_normal"
         android:hint="@string/edit_text_hint5"
-        android:inputType="numberPassword"
-        android:textColor="#FFFFFF"
+        android:inputType="textWebPassword"
+        android:textColor="@color/red"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextTextEmailAddress"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="121dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="544dp"
+        android:layout_width="141dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="512dp"
+        android:autoSizeTextType="uniform"
         android:backgroundTint="?android:attr/colorMultiSelectHighlight"
+        android:fontFamily="@font/agdasima_bold"
         android:text="@string/registrarse1_button"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
@@ -211,8 +159,8 @@
         android:id="@+id/idTextView6"
         android:layout_width="120dp"
         android:layout_height="40dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="16dp"
 
         android:text="@string/cuenta_label"
         android:textColor="#762E10"
@@ -223,18 +171,20 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_width="141dp"
+        android:layout_height="51dp"
         android:layout_marginStart="40dp"
-
         android:layout_marginTop="632dp"
 
         android:layout_marginEnd="50dp"
+        android:autoSizeTextType="uniform"
         android:backgroundTint="#949494"
-        android:text="Button"
+        android:fontFamily="@font/agdasima_bold"
+        android:text="@string/login1_button"
         android:textColor="#FFFFFF"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
