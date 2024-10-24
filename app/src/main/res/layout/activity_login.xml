@@ -50,22 +50,20 @@
 
     <EditText
         android:id="@+id/editIntroduceEmail"
-        android:layout_width="362dp"
+        android:layout_width="202dp"
         android:layout_height="56dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="20dp"
         android:autofillHints="name"
         android:background="@color/material_dynamic_neutral80"
         android:ems="10"
-        android:hint="@string/edit_text_hint1.1"
         android:fontFamily="@font/agdasima_normal"
+        android:hint="@string/edit_text_hint1.1"
         android:inputType="text"
         android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintHorizontal_bias="0.359"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        tools:ignore="MissingConstraints" />
         app:layout_constraintTop_toBottomOf="@id/textView"
         tools:ignore="MissingConstraints" />
 
@@ -85,7 +83,7 @@
 
     <EditText
         android:id="@+id/editTextText2"
-        android:layout_width="369dp"
+        android:layout_width="202dp"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="36dp"
@@ -93,27 +91,27 @@
         android:autofillHints="address"
         android:background="@color/material_dynamic_neutral_variant80"
         android:ems="10"
-        android:hint="@string/edit_text_hint2.2"
         android:fontFamily="@font/agdasima_normal"
+        android:hint="@string/edit_text_hint2.2"
         android:inputType="text"
         android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintHorizontal_bias="0.284"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewContraseñaLogin"
+        app:layout_constraintTop_toBottomOf="@id/textViewContrasenaLogin"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="187dp"
-        android:layout_height="65dp"
+        android:layout_width="165dp"
+        android:layout_height="51dp"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="524dp"
         android:backgroundTint="?android:attr/colorMultiSelectHighlight"
         android:fontFamily="@font/agdasima_bold"
         android:text="@string/login2_button"
         android:textColor="#FFFFFF"
-        android:textSize="25dp"
+        android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -122,11 +120,54 @@
         android:id="@+id/textViewRespuesta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="44dp"
         android:text="Respuesta"
         android:textColor="#FF0000"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/editTextText2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/editTextText2" />
+
+    <TextView
+        android:id="@+id/textViewPregunta"
+        android:layout_width="140dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/agdasima_bold"
+        android:text="@string/pregunta_login"
+        android:textColor="#762E10"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button2"
+        tools:ignore="MissingConstraints,UnusedAttribute" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="165dp"
+        android:layout_height="51dp"
+        android:fontFamily="@font/agdasima_bold"
+        android:backgroundTint="@color/material_dynamic_neutral60"
+        android:text="@string/registro_button"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="652dp" />
+    <!--
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="165dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="128dp"
+
+            android:backgroundTint="?android:attr/colorMultiSelectHighlight"
+            android:fontFamily="@font/agdasima_bold"
+            android:text="@string/registro_button"
+            android:textColor="#FFFFFF"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewPregunta"
+            app:layout_constraintTop_toTopOf="parent" />
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

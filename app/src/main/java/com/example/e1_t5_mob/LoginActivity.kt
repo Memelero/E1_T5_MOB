@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
         editIntroduceEmail = findViewById(R.id.editIntroduceEmail)
         mEditTextPass = findViewById(R.id.editTextText2)
-        mButtonIniciarSesion = findViewById(R.id.buttonIniciarSesion)
+        mButtonIniciarSesion = findViewById(R.id.button2)
         mTextViewRespuesta = findViewById(R.id.textViewRespuesta)
 
         comprobarSesionIniciada()
