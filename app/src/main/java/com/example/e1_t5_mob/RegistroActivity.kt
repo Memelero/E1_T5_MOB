@@ -9,20 +9,18 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.Calendar
 
 class RegistroActivity : AppCompatActivity() {
 
     private lateinit var nombreEditText: EditText
-    private lateinit var direccionEditText: EditText
-    private lateinit var fechaEditText: EditText
+    private lateinit var apellidoEditText: EditText
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var registrarButton: Button
-    private lateinit var iniciarSesionButton:Button
+    private lateinit var iniciarSesionButton: Button
     private lateinit var db: FirebaseFirestore
     private lateinit var respuestaTextView: TextView
 
@@ -35,8 +33,7 @@ class RegistroActivity : AppCompatActivity() {
 
         // Referencias a los elementos del layout
         nombreEditText = findViewById(R.id.editTextText)
-        direccionEditText = findViewById(R.id.editTextText2)
-        fechaEditText = findViewById(R.id.editTextdate)
+        apellidoEditText = findViewById(R.id.editTextText2)
         emailEditText = findViewById(R.id.editTextTextEmailAddress)
         passwordEditText = findViewById(R.id.editTextNumberPassword)
         registrarButton = findViewById(R.id.button2)
@@ -44,36 +41,38 @@ class RegistroActivity : AppCompatActivity() {
         iniciarSesionButton = findViewById(R.id.button3)
 
         iniciarSesionButton.setOnClickListener {
-            //ventana login
-            val intent2 = Intent(this, LoginActivity::class.java)
-            startActivity(intent2)
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
+
         registrarButton.setOnClickListener {
             val nombre = nombreEditText.text.toString().trim()
-            val apellido = direccionEditText.text.toString().trim()
-            val fechaNacimiento = fechaEditText.text.toString().trim()
+            val apellido = apellidoEditText.text.toString().trim()
             val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
-            if (nombre.isEmpty() || apellido.isEmpty() || fechaNacimiento.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            if (nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 respuestaTextView.text = "Por favor, completa todos los campos"
                 respuestaTextView.setTextColor(Color.RED)
             } else {
-                registrarUsuarioFirestore(nombre, apellido, fechaNacimiento, email, password)
+                registrarUsuarioFirestore(nombre, apellido, email, password)
             }
         }
     }
 
-    private fun registrarUsuarioFirestore(nombre: String, apellido: String, fechaNacimiento: String, email: String, password: String) {
+    private fun registrarUsuarioFirestore(nombre: String, apellido: String, email: String, password: String) {
+        // Generar una fecha de nacimiento aleatoria como Timestamp
+        val randomFnacimiento = generarFechaAleatoria()
+
         val user = hashMapOf(
             "nombre" to nombre,
             "apellido" to apellido,
-            "fnacimiento" to fechaNacimiento,
+            "fnacimiento" to randomFnacimiento,
             "email" to email,
             "contraseña" to password
         )
 
-        val usuarioDocRef = db.collection("usuarios").document(email)  // Definir la referencia del documento
+        val usuarioDocRef = db.collection("usuarios").document(nombre)
 
         usuarioDocRef.get()
             .addOnSuccessListener { document ->
@@ -81,24 +80,19 @@ class RegistroActivity : AppCompatActivity() {
                     usuarioDocRef.set(user)
                         .addOnSuccessListener {
                             Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                            guardarSesion(email, nombre, apellido, randomFnacimiento)
 
-                            guardarSesion(email, nombre, apellido , fechaNacimiento)
-
-                            // Obtener la fecha actual
-                            val fechaActual = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-
-                            // Crear workout inicial con la fecha actual
+                            // Crear workout inicial
                             val workout = hashMapOf(
                                 "nombre" to "Entrenamiento inicial",
                                 "tiempo_realizado" to "0 min",
                                 "tiempo_estimado" to "30 min",
-                                "fecha" to fechaActual,
+                                "fecha" to Timestamp.now(),
                                 "porcent_ejer" to "0%",
                                 "url" to "http://ejemplo.com",
                                 "nivel" to "Principiante"
                             )
 
-                            // Añadir el workout inicial a la subcolección 'historial_workouts' dentro del documento del usuario
                             usuarioDocRef.collection("historial_workouts")
                                 .add(workout)
                                 .addOnSuccessListener {
@@ -127,38 +121,27 @@ class RegistroActivity : AppCompatActivity() {
             }
     }
 
-    private fun crearHistorialDeWorkouts(userId: String) {
-        val workoutHistory = hashMapOf(
-            "userId" to userId,
-            "workouts" to listOf<Map<String, Any>>() // Lista inicial de workouts vacía
-        )
+    private fun generarFechaAleatoria(): Timestamp {
+        val calendar = Calendar.getInstance()
+        val currentYear = calendar.get(Calendar.YEAR)
+        // Establece una fecha aleatoria entre 1980 y el año actual
+        val randomYear = (1980..currentYear).random()
+        val randomMonth = (0..11).random()
+        val randomDay = (1..28).random()  // Asegura que el día esté dentro de un rango válido
 
-        db.collection("workouts").document(userId)
-            .set(workoutHistory)
-            .addOnSuccessListener {
-                Log.d("RegistroActivity", "Historial de workouts creado exitosamente para el usuario con ID: $userId")
-            }
-            .addOnFailureListener { e ->
-                Log.w("RegistroActivity", "Error al crear historial de workouts", e)
-            }
+        calendar.set(randomYear, randomMonth, randomDay)
+        return Timestamp(calendar.time)
     }
 
-    private fun guardarSesion(email: String, nombre: String, apellido: String, fechaNacimiento: String) {
+    private fun guardarSesion(email: String, nombre: String, apellido: String, fnacimiento: Timestamp) {
         val sharedPreferences = getSharedPreferences("SesionUsuario", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
         editor.putString("email", email)
         editor.putString("nombre", nombre)
-        editor.putString("apelido", apellido)
-        editor.putString("fnacimiento", fechaNacimiento) // Guardar fecha como String
+        editor.putString("apellido", apellido)
+        editor.putString("fnacimiento", fnacimiento.toDate().toString())
 
-        // Confirmar que los datos se guardan
         editor.apply()
-
-        // Añadir logs para verificar los valores almacenados
-        Log.d("GuardarSesion", "Email: $email")
-        Log.d("GuardarSesion", "Nombre: $nombre")
-        Log.d("GuardarSesion", "Direccion: $apellido")
-        Log.d("GuardarSesion", "Fecha de Nacimiento: $fechaNacimiento")
     }
 }

@@ -24,6 +24,7 @@
         <activity android:name="com.example.e1_t5_mob.RegistroActivity"/>
         <activity android:name="com.example.e1_t5_mob.LoginActivity"/>
         <activity android:name="com.example.e1_t5_mob.PerfilActivity"/>
+        <activity android:name="com.example.e1_t5_mob.WorkoutActivity"/>
     </application>
 
 </manifest>

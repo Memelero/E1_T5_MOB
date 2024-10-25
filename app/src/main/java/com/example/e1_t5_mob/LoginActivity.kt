@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
-import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
 
@@ -64,9 +63,6 @@ class LoginActivity : AppCompatActivity() {
                         val passwordFirestore = document.getString("contraseña")
 
                         if (password == passwordFirestore) {
-
-                            mTextViewRespuesta.visibility = View.GONE
-
                             // Obtener todos los datos del usuario
                             val nombre = document.getString("nombre")
                             val apellido = document.getString("apellido")
@@ -114,18 +110,11 @@ class LoginActivity : AppCompatActivity() {
         fnacimiento?.let {
             val fnacimientoString = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(it.toDate())
             editor.putString("fnacimiento", fnacimientoString)
-            Log.d("GuardarSesion", "Fecha de Nacimiento: $fnacimientoString") // Log para verificar
         }
 
         // Confirmar que los datos se guardan
         editor.apply()
-
-        // Añadir logs para verificar los valores almacenados
-        Log.d("GuardarSesion", "Email: $email")
-        Log.d("GuardarSesion", "Nombre: $nombre")
-        Log.d("GuardarSesion", "Apellido: $apellido")
     }
-
 
     private fun comprobarSesionIniciada() {
         val sharedPreferences = getSharedPreferences("SesionUsuario", MODE_PRIVATE)
@@ -138,8 +127,6 @@ class LoginActivity : AppCompatActivity() {
             intent.putExtra("email", email)
             startActivity(intent)
             finish()
-        } else {
-            Log.d("LoginActivity", "No está autenticado")
         }
     }
 }
