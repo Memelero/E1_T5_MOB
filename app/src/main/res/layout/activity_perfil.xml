@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="204dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="@font/agdasima_bold"
         android:textSize="35dp"
         android:textStyle="bold"
@@ -104,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="204dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="@font/agdasima_bold"
         android:textSize="35dp"
         android:textStyle="bold"
@@ -127,12 +127,12 @@
 
     <TextView
         android:id="@+id/textViewEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="270dp"
+        android:layout_height="42dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/agdasima_bold"
-        android:textSize="20dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewEmailTitle" />
@@ -141,31 +141,44 @@
         android:id="@+id/buttonColor"
         android:layout_width="127dp"
         android:layout_height="52dp"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/material_dynamic_neutral80"
-        android:layout_marginTop="28dp"
         android:fontFamily="@font/agdasima_bold"
         android:text="@string/color_button"
-        android:textSize="20dp"
+        android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewEmail"
         tools:ignore="MissingConstraints" />
-    <!--
-        <Button
-            android:id="@+id/buttonColor"
-            android:layout_width="120dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="132dp"
-            android:backgroundTint="@color/material_dynamic_neutral80"
-            android:fontFamily="@font/agdasima_bold"
-            android:text="@string/color_button"
-            android:textColor="#FFFFFF"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewEmail"
-            app:layout_constraintTop_toTopOf="parent" />
-    -->
+
+    <Button
+        android:id="@+id/buttonIdioma"
+        android:layout_width="127dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/material_dynamic_neutral80"
+        android:fontFamily="@font/agdasima_bold"
+        android:text="@string/idioma_button"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonColor"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonVolver"
+        android:layout_width="127dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="132dp"
+        android:backgroundTint="@color/material_dynamic_neutral80"
+        android:fontFamily="@font/agdasima_bold"
+        android:layout_marginTop="12dp"
+        android:textSize="25dp"
+        android:text="@string/volver_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonIdioma"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

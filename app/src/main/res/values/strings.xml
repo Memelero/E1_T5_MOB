@@ -41,5 +41,7 @@
     <string name="apellido_perfil">Apellido:</string>
     <string name="fecha_perfil">Fecha:</string>
     <string name="email_perfil">Email:</string>
-    <string name="color_button">CLARO/OSCURO</string>
+    <string name="color_button">TEMA</string>
+    <string name="idioma_button">ITZULI</string>
+    <string name="volver_button">VOLVER</string>
 </resources>
