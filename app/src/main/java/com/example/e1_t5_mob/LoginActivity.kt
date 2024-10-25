@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -25,6 +26,12 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val buttonRegistroLog = findViewById<Button>(R.id.buttonRegistroLog)
+        buttonRegistroLog.setOnClickListener {
+            val intent = Intent(this, RegistroActivity::class.java)
+            startActivity(intent)
+        }
 
         db = FirebaseFirestore.getInstance()
 
@@ -57,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
                         val passwordFirestore = document.getString("contraseña")
 
                         if (password == passwordFirestore) {
+
+                            mTextViewRespuesta.visibility = View.GONE
+
                             // Obtener todos los datos del usuario
                             val nombre = document.getString("nombre")
                             val apellido = document.getString("apellido")
@@ -77,11 +87,13 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             mTextViewRespuesta.text = "Contraseña incorrecta"
                             mTextViewRespuesta.setTextColor(Color.RED)
+                            mTextViewRespuesta.visibility = View.VISIBLE
                         }
                     }
                 } else {
                     mTextViewRespuesta.text = "No se encontró una cuenta con este email"
                     mTextViewRespuesta.setTextColor(Color.RED)
+                    mTextViewRespuesta.visibility = View.VISIBLE
                 }
             }
             .addOnFailureListener { exception ->

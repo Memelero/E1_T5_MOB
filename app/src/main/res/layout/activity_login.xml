@@ -93,7 +93,7 @@
         android:ems="10"
         android:fontFamily="@font/agdasima_normal"
         android:hint="@string/edit_text_hint2.2"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.284"
@@ -105,8 +105,8 @@
         android:id="@+id/button2"
         android:layout_width="165dp"
         android:layout_height="51dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="524dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="528dp"
         android:backgroundTint="?android:attr/colorMultiSelectHighlight"
         android:fontFamily="@font/agdasima_bold"
         android:text="@string/login2_button"
@@ -127,14 +127,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@id/editTextText2"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/textViewPregunta"
         android:layout_width="140dp"
         android:layout_height="46dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/agdasima_bold"
         android:text="@string/pregunta_login"
         android:textColor="#762E10"
@@ -144,15 +145,19 @@
         tools:ignore="MissingConstraints,UnusedAttribute" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonRegistroLog"
         android:layout_width="165dp"
         android:layout_height="51dp"
-        android:fontFamily="@font/agdasima_bold"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/material_dynamic_neutral60"
+        android:fontFamily="@font/agdasima_bold"
         android:text="@string/registro_button"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="652dp" />
+        android:textColor="#FFFF"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPregunta"
+        tools:ignore="MissingConstraints" />
     <!--
         <Button
             android:id="@+id/button3"
