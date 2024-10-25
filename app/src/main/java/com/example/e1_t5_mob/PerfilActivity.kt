@@ -1,7 +1,9 @@
 package com.example.e1_t5_mob
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
@@ -13,6 +15,7 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var textViewEmail: TextView
     private lateinit var textViewApellido: TextView
     private lateinit var textViewFechaNacimiento: TextView
+    private lateinit var buttonIdioma: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +26,17 @@ class PerfilActivity : AppCompatActivity() {
         textViewApellido = findViewById(R.id.textViewApellido)
         textViewEmail = findViewById(R.id.textViewEmail)
         textViewFechaNacimiento = findViewById(R.id.textViewFechaNacimiento)
+        buttonIdioma = findViewById(R.id.buttonIdioma)
 
         // Obtener datos de la sesión
         obtenerDatosSesion()
+
+        buttonIdioma.setOnClickListener {
+            //ventana workouts
+            val intent = Intent(this, WorkoutActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun obtenerDatosSesion() {

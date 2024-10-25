@@ -22,6 +22,7 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var registrarButton: Button
+    private lateinit var iniciarSesionButton:Button
     private lateinit var db: FirebaseFirestore
     private lateinit var respuestaTextView: TextView
 
@@ -40,7 +41,13 @@ class RegistroActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.editTextNumberPassword)
         registrarButton = findViewById(R.id.button2)
         respuestaTextView = findViewById(R.id.idTextView6)
+        iniciarSesionButton = findViewById(R.id.button3)
 
+        iniciarSesionButton.setOnClickListener {
+            //ventana login
+            val intent2 = Intent(this, LoginActivity::class.java)
+            startActivity(intent2)
+        }
         registrarButton.setOnClickListener {
             val nombre = nombreEditText.text.toString().trim()
             val apellido = direccionEditText.text.toString().trim()
