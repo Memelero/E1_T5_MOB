@@ -30,9 +30,6 @@
     <string name="edit_text_hint2.2">Introduce tu contraseña</string>
     <string name="login2_button">INICIAR SESION</string>
 
-
-
-
     <!--PERFIL -->
     <string name="perfil_title">PERFIL</string>
     <string name="nombre_perfil">Nombre:</string>
