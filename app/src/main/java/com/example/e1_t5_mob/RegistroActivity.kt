@@ -69,7 +69,8 @@ class RegistroActivity : AppCompatActivity() {
             "apellido" to apellido,
             "fnacimiento" to randomFnacimiento,
             "email" to email,
-            "contraseña" to password
+            "contraseña" to password,
+            "nivel" to "Principiante"
         )
 
         val usuarioDocRef = db.collection("usuarios").document(nombre)

@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class WorkoutActivity : AppCompatActivity() {
 
@@ -16,7 +18,6 @@ class WorkoutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
-        Log.d("GuardarSesion","pasó")
         // Inicializar Firestore
         db = FirebaseFirestore.getInstance()
 
@@ -26,19 +27,18 @@ class WorkoutActivity : AppCompatActivity() {
 
         // Obtener email del usuario logueado
         val sharedPreferences = getSharedPreferences("SesionUsuario", MODE_PRIVATE)
-        val email = sharedPreferences.getString("email", null)
+        val nombre = sharedPreferences.getString("nombre", null)
 
-        if (email != null) {
-            cargarHistorial(email)
-            Log.d("GuardarSesion","pasó")
+        if (nombre != null) {
+            cargarHistorial(nombre)
         } else {
             historialContentTextView.text = "No hay usuario logueado."
         }
     }
 
-    private fun cargarHistorial(email: String) {
+    private fun cargarHistorial(nombre: String) {
         // Acceder a la subcolección 'historial_workouts' del usuario
-        db.collection("usuarios").document(email).collection("historial_workouts")
+        db.collection("usuarios").document(nombre).collection("historial_workouts")
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
@@ -46,16 +46,22 @@ class WorkoutActivity : AppCompatActivity() {
                 } else {
                     val sb = StringBuilder()
                     for (document in documents) {
-                        val nombre = document.getString("nombre") ?: "Nombre no disponible"
+                        val nombre_workout = document.getString("nombre") ?: "Nombre no disponible"
                         val tiempoRealizado = document.getString("tiempo_realizado") ?: "0 min"
                         val tiempoEstimado = document.getString("tiempo_estimado") ?: "0 min"
-                        val fecha = document.getString("fecha") ?: "Fecha no disponible"
+                        val fechaTimestamp = document.getTimestamp("fecha")
                         val porcentEjer = document.getString("porcent_ejer") ?: "0%"
                         val url = document.getString("url") ?: "URL no disponible"
                         val nivel = document.getString("nivel") ?: "Nivel no disponible"
 
+                        val fecha = if (fechaTimestamp != null) {
+                            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                            sdf.format(fechaTimestamp.toDate())
+                        } else {
+                            "Fecha no disponible"
+                        }
                         // Agregar workout al StringBuilder
-                        sb.append("Nombre: $nombre\n")
+                        sb.append("Nombre: $nombre_workout\n")
                             .append("Tiempo Realizado: $tiempoRealizado\n")
                             .append("Tiempo Estimado: $tiempoEstimado\n")
                             .append("Fecha: $fecha\n")
