@@ -40,5 +40,5 @@
     <string name="email_perfil">Email:</string>
     <string name="color_button">TEMA</string>
     <string name="idioma_button">ITZULI</string>
-    <string name="volver_button">VOLVER</string>
+    <string name="cerrar_button">CERRAR SESION</string>
 </resources>
