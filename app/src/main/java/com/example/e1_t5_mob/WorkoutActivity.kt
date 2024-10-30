@@ -1,80 +1,145 @@
 package com.example.e1_t5_mob
 
-import android.content.SharedPreferences
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class WorkoutActivity : AppCompatActivity() {
 
-    private lateinit var historialTextView: TextView
-    private lateinit var historialContentTextView: TextView
+    private lateinit var historialTableLayout: TableLayout
     private lateinit var db: FirebaseFirestore
+    private var customFont: Typeface? = null
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
-        // Inicializar Firestore
+
+        // Initialize Firestore
         db = FirebaseFirestore.getInstance()
 
-        // Referencias a los elementos del layout
-        historialTextView = findViewById(R.id.historialTextView)
-        historialContentTextView = findViewById(R.id.historialContentTextView)
+        // Reference to the TableLayout
+        historialTableLayout = findViewById(R.id.historialTableLayout)
 
-        // Obtener email del usuario logueado
+        // Load the custom font
+        customFont = ResourcesCompat.getFont(this, R.font.agdasima_normal)
+
+        // Get logged-in user's name from SharedPreferences
         val sharedPreferences = getSharedPreferences("SesionUsuario", MODE_PRIVATE)
         val nombre = sharedPreferences.getString("nombre", null)
 
         if (nombre != null) {
             cargarHistorial(nombre)
         } else {
-            historialContentTextView.text = "No hay usuario logueado."
+            addTableRow("Error", "No hay usuario logueado.")
         }
     }
 
     private fun cargarHistorial(nombre: String) {
-        // Acceder a la subcolección 'historial_workouts' del usuario
         db.collection("usuarios").document(nombre).collection("historial_workouts")
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
-                    historialContentTextView.text = "No hay workouts registrados."
+                    addTableRow("Error", "No hay workouts registrados.")
                 } else {
-                    val sb = StringBuilder()
                     for (document in documents) {
-                        val nombre_workout = document.getString("nombre") ?: "Nombre no disponible"
-                        val tiempoRealizado = document.getString("tiempo_realizado") ?: "0 min"
-                        val tiempoEstimado = document.getString("tiempo_estimado") ?: "0 min"
+                        val nombreWorkout = document.getString("nombre") ?: "N/D"
+                        val tiempoRealizado = document.getString("tiempo_realizado") ?: "N/D"
+                        val tiempoEstimado = document.getString("tiempo_estimado") ?: "N/D"
                         val fechaTimestamp = document.getTimestamp("fecha")
                         val porcentEjer = document.getString("porcent_ejer") ?: "0%"
-                        val url = document.getString("url") ?: "URL no disponible"
-                        val nivel = document.getString("nivel") ?: "Nivel no disponible"
+                        val url = document.getString("url") ?: "N/D"
+                        val nivel = document.getString("nivel") ?: "N/D"
 
                         val fecha = if (fechaTimestamp != null) {
                             val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                             sdf.format(fechaTimestamp.toDate())
                         } else {
-                            "Fecha no disponible"
+                            "N/D"
                         }
-                        // Agregar workout al StringBuilder
-                        sb.append("Nombre: $nombre_workout\n")
-                            .append("Tiempo Realizado: $tiempoRealizado\n")
-                            .append("Tiempo Estimado: $tiempoEstimado\n")
-                            .append("Fecha: $fecha\n")
-                            .append("Porcentaje Ejercicio: $porcentEjer\n")
-                            .append("URL: $url\n")
-                            .append("Nivel: $nivel\n\n")
+
+                        // Agregar filas con datos de workout
+                        addStyledRow("Nombre", nombreWorkout)
+                        addStyledRow("Tiempo Realizado", tiempoRealizado)
+                        addStyledRow("Tiempo Estimado", tiempoEstimado)
+                        addStyledRow("Fecha", fecha)
+                        addStyledRow("Porcentaje Ejercicio", porcentEjer)
+                        addStyledRow("URL", url)
+                        addStyledRow("Nivel", nivel)
+
+                        // Agregar separación entre workouts
+                        val separator = View(this)
+                        separator.layoutParams = ViewGroup.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            2
+                        )
+                        separator.setBackgroundColor(Color.GRAY)
+                        historialTableLayout.addView(separator)
                     }
-                    historialContentTextView.text = sb.toString()
                 }
             }
             .addOnFailureListener { exception ->
                 Log.e("WorkoutActivity", "Error al cargar historial: ${exception.message}")
-                historialContentTextView.text = "Error al cargar historial."
+                addTableRow("Error", "Error al cargar historial.")
             }
+    }
+
+    private fun addStyledRow(title: String, value: String) {
+        val row = TableRow(this)
+        val rowParams = TableRow.LayoutParams(
+            TableRow.LayoutParams.MATCH_PARENT,
+            TableRow.LayoutParams.WRAP_CONTENT
+        )
+        rowParams.setMargins(0, 8, 0, 8)  // Margen entre filas
+        row.layoutParams = rowParams
+
+        // Title Column
+        val titleView = TextView(this)
+        titleView.text = title
+        titleView.textSize = 18f  // Tamaño de fuente más grande
+        titleView.typeface = customFont
+        titleView.setPadding(16, 16, 16, 16)  // Más padding
+        titleView.setBackgroundColor(Color.parseColor("#E0E0E0"))  // Fondo gris claro para el título
+        titleView.gravity = Gravity.START
+
+        // Value Column
+        val valueView = TextView(this)
+        valueView.text = value
+        valueView.textSize = 18f  // Tamaño de fuente más grande
+        valueView.typeface = customFont
+        valueView.setPadding(16, 16, 16, 16)  // Más padding
+        valueView.setBackgroundColor(Color.WHITE)  // Fondo blanco para los datos
+        valueView.gravity = Gravity.START
+
+        row.addView(titleView)
+        row.addView(valueView)
+        historialTableLayout.addView(row)
+    }
+
+    private fun addTableRow(title: String, message: String) {
+        val row = TableRow(this)
+        val titleView = TextView(this)
+        titleView.text = title
+        titleView.setTypeface(null, Typeface.BOLD)
+        row.addView(titleView)
+
+        val messageView = TextView(this)
+        messageView.text = message
+        row.addView(messageView)
+
+        historialTableLayout.addView(row)
     }
 }

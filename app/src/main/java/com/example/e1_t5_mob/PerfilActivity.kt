@@ -19,6 +19,7 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var buttonIdioma: Button
     private lateinit var buttonCerrar: Button
     private lateinit var buttonColor: Button
+    private lateinit var buttonWorkouts: Button
 
     private var isFondoClaro = true
 
@@ -26,20 +27,20 @@ class PerfilActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil)
 
-        // Asignar las vistas
+
         textViewNombre = findViewById(R.id.textViewNombre)
         textViewApellido = findViewById(R.id.textViewApellido)
         textViewEmail = findViewById(R.id.textViewEmail)
         textViewFechaNacimiento = findViewById(R.id.textViewFechaNacimiento)
         buttonIdioma = findViewById(R.id.buttonIdioma)
         buttonCerrar = findViewById(R.id.buttonCerrar)
-        buttonColor = findViewById(R.id.buttonColor) // Agregado para evitar null pointer
+        buttonColor = findViewById(R.id.buttonColor)
+        buttonWorkouts = findViewById(R.id.buttonWorkouts)
 
-        // Obtener datos de la sesión
+
         obtenerDatosSesion()
 
-        buttonIdioma.setOnClickListener {
-            //ventana workouts
+        buttonWorkouts.setOnClickListener {
             val intent = Intent(this, WorkoutActivity::class.java)
             startActivity(intent)
         }
@@ -49,14 +50,14 @@ class PerfilActivity : AppCompatActivity() {
         }
 
         buttonColor.setOnClickListener {
-            toggleFondo() // Cambia entre los fondos claro y oscuro
+            toggleFondo()
         }
     }
 
     private fun toggleFondo() {
         val rootLayout = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.rootLayout)
 
-        // Alternar fondo entre claro y oscuro
+
         if (isFondoClaro) {
             rootLayout.setBackgroundResource(R.drawable.fondo_oscuro)
 

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/registroTextView"
+        android:id="@+id/perfilTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -57,7 +57,7 @@
         android:textSize="35dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/registroTextView" />
+        app:layout_constraintTop_toBottomOf="@id/perfilTextView" />
 
     <TextView
         android:id="@+id/textViewApellidoTitle"
@@ -169,17 +169,33 @@
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:id="@+id/buttonWorkouts"
+        android:layout_width="155dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="150dp"
+        android:backgroundTint="@color/material_dynamic_neutral80"
+        android:fontFamily="@font/agdasima_bold"
+        android:text="@string/workouts_button"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonIdioma"
+        tools:ignore="MissingConstraints" />
+
+    <Button
         android:id="@+id/buttonCerrar"
         android:layout_width="188dp"
         android:layout_height="67dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/material_dynamic_neutral60"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/material_dynamic_neutral50"
         android:fontFamily="@font/agdasima_bold"
         android:text="@string/cerrar_button"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonIdioma"
+        app:layout_constraintTop_toBottomOf="@id/buttonWorkouts"
         tools:ignore="MissingConstraints" />
 
 

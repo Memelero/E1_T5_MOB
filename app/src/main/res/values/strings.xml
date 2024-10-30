@@ -41,4 +41,9 @@
     <string name="color_button">TEMA</string>
     <string name="idioma_button">ITZULI</string>
     <string name="cerrar_button">CERRAR SESION</string>
+    <string name="workouts_button">WORKOUTS</string>
+
+    <!--WORKOUTS -->
+    <string name="workout_title">WORKOUTS</string>
+    <string name="workoutHistorial_title">HISTORIAL DE WORKOUTS</string>
 </resources>
