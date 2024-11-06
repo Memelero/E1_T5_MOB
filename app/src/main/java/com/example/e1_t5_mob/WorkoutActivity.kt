@@ -1,6 +1,7 @@
 package com.example.e1_t5_mob
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -30,12 +33,16 @@ class WorkoutActivity : AppCompatActivity() {
 
         // Initialize Firestore
         db = FirebaseFirestore.getInstance()
-
-        // Reference to the TableLayout
         historialTableLayout = findViewById(R.id.historialTableLayout)
 
-        // Load the custom font
+
         customFont = ResourcesCompat.getFont(this, R.font.agdasima_normal)
+
+        val buttonPefil = findViewById<Button>(R.id.buttonPERFIL)
+        buttonPefil.setOnClickListener {
+            val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
+        }
 
         // Get logged-in user's name from SharedPreferences
         val sharedPreferences = getSharedPreferences("SesionUsuario", MODE_PRIVATE)

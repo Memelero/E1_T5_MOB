@@ -1,6 +1,7 @@
 package com.example.e1_t5_mob
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -20,8 +21,10 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var buttonCerrar: Button
     private lateinit var buttonColor: Button
     private lateinit var buttonWorkouts: Button
+    private lateinit var textViewIdioma: TextView
 
     private var isFondoClaro = true
+    private var isEuskera = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +54,9 @@ class PerfilActivity : AppCompatActivity() {
 
         buttonColor.setOnClickListener {
             toggleFondo()
+        }
+        textViewIdioma.setOnClickListener {
+            toggleLanguage()
         }
     }
 
@@ -129,5 +135,18 @@ class PerfilActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+
+    private fun toggleLanguage() {
+        isEuskera = !isEuskera
+        val newLocale = if (isEuskera) Locale("eu") else Locale("es")
+
+        // Crear nueva configuración y contexto para el idioma
+        val config = Configuration(resources.configuration)
+        config.setLocale(newLocale)
+        applyOverrideConfiguration(config) // Actualiza la configuración
+
+        // Recargar la actividad para aplicar el cambio de idioma
+        recreate()
     }
 }
