@@ -90,7 +90,7 @@ class RegistroActivity : AppCompatActivity() {
                                 "tiempo_estimado" to "30 min",
                                 "fecha" to Timestamp.now(),
                                 "porcent_ejer" to "0%",
-                                "url" to "http://ejemplo.com",
+                                "url" to "https://youtu.be/q9b9afJ-GnA?feature=shared",
                                 "nivel" to "Principiante"
                             )
 

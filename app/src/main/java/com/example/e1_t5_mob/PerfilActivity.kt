@@ -22,9 +22,12 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var buttonColor: Button
     private lateinit var buttonWorkouts: Button
     private lateinit var textViewIdioma: TextView
+    private lateinit var buttonItzuli: Button
 
     private var isFondoClaro = true
     private var isEuskera = false
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,6 @@ class PerfilActivity : AppCompatActivity() {
         textViewApellido = findViewById(R.id.textViewApellido)
         textViewEmail = findViewById(R.id.textViewEmail)
         textViewFechaNacimiento = findViewById(R.id.textViewFechaNacimiento)
-        buttonIdioma = findViewById(R.id.buttonIdioma)
         buttonCerrar = findViewById(R.id.buttonCerrar)
         buttonColor = findViewById(R.id.buttonColor)
         buttonWorkouts = findViewById(R.id.buttonWorkouts)
@@ -55,10 +57,10 @@ class PerfilActivity : AppCompatActivity() {
         buttonColor.setOnClickListener {
             toggleFondo()
         }
-        textViewIdioma.setOnClickListener {
-            toggleLanguage()
-        }
+
     }
+
+
 
     private fun toggleFondo() {
         val rootLayout = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.rootLayout)
@@ -135,18 +137,5 @@ class PerfilActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
-    }
-
-    private fun toggleLanguage() {
-        isEuskera = !isEuskera
-        val newLocale = if (isEuskera) Locale("eu") else Locale("es")
-
-        // Crear nueva configuración y contexto para el idioma
-        val config = Configuration(resources.configuration)
-        config.setLocale(newLocale)
-        applyOverrideConfiguration(config) // Actualiza la configuración
-
-        // Recargar la actividad para aplicar el cambio de idioma
-        recreate()
     }
 }

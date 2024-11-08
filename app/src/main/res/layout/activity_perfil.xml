@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/textViewIdioma"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="53dp"
         android:layout_marginStart="290dp"
         android:layout_marginTop="40dp"
         android:clickable="true"
@@ -166,7 +166,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/buttonIdioma"
+        android:id="@+id/buttonItzuli"
         android:layout_width="127dp"
         android:layout_height="52dp"
         android:layout_marginStart="212dp"
@@ -194,7 +194,7 @@
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonIdioma"
+        app:layout_constraintTop_toBottomOf="@id/buttonItzuli"
         tools:ignore="MissingConstraints" />
 
     <Button

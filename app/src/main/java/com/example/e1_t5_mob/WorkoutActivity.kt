@@ -9,6 +9,9 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebView
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TableLayout
@@ -19,12 +22,16 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
+import android.webkit.WebViewClient
+import com.bumptech.glide.Glide
 
 class WorkoutActivity : AppCompatActivity() {
 
     private lateinit var historialTableLayout: TableLayout
     private lateinit var db: FirebaseFirestore
     private var customFont: Typeface? = null
+    private lateinit var videoWebView: WebView
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +42,25 @@ class WorkoutActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         historialTableLayout = findViewById(R.id.historialTableLayout)
 
-
         customFont = ResourcesCompat.getFont(this, R.font.agdasima_normal)
+
+
+        // Inicializa el WebView
+        videoWebView = findViewById(R.id.videoWebView)
+
+        // Habilita JavaScript en el WebView
+        val webSettings: WebSettings = videoWebView.settings
+        webSettings.javaScriptEnabled = true
+
+        // Establece el WebViewClient para manejar la carga dentro del WebView
+        videoWebView.webViewClient = WebViewClient()
+
+        // Aquí puedes colocar la URL del video de YouTube
+        val youtubeUrl = "https://www.youtube.com/embed/q9b9afJ-GnA"
+
+
+        // Cargar el video de YouTube
+        videoWebView.loadUrl(youtubeUrl)
 
         val buttonPefil = findViewById<Button>(R.id.buttonPERFIL)
         buttonPefil.setOnClickListener {
@@ -44,9 +68,17 @@ class WorkoutActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val button6 = findViewById<Button>(R.id.button6)
+        button6.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+
         // Get logged-in user's name from SharedPreferences
         val sharedPreferences = getSharedPreferences("SesionUsuario", MODE_PRIVATE)
         val nombre = sharedPreferences.getString("nombre", null)
+
 
         if (nombre != null) {
             cargarHistorial(nombre)
@@ -87,6 +119,7 @@ class WorkoutActivity : AppCompatActivity() {
                         addStyledRow("URL", url)
                         addStyledRow("Nivel", nivel)
 
+
                         // Agregar separación entre workouts
                         val separator = View(this)
                         separator.layoutParams = ViewGroup.LayoutParams(
@@ -103,6 +136,8 @@ class WorkoutActivity : AppCompatActivity() {
                 addTableRow("Error", "Error al cargar historial.")
             }
     }
+
+
 
     private fun addStyledRow(title: String, value: String) {
         val row = TableRow(this)

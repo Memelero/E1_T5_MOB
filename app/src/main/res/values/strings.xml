@@ -43,7 +43,7 @@
     <string name="cerrar_button">CERRAR SESION</string>
     <string name="workouts_button">WORKOUTS</string>
     <string name="button_translate">EU</string>
-    <string name="button_translate" tools:ignore="DuplicateDefinition">ES</string>
+
 
 
 
