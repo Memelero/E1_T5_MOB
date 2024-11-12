@@ -17,7 +17,6 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var textViewEmail: TextView
     private lateinit var textViewApellido: TextView
     private lateinit var textViewFechaNacimiento: TextView
-    private lateinit var buttonIdioma: Button
     private lateinit var buttonCerrar: Button
     private lateinit var buttonColor: Button
     private lateinit var buttonWorkouts: Button
@@ -56,6 +55,9 @@ class PerfilActivity : AppCompatActivity() {
 
         buttonColor.setOnClickListener {
             toggleFondo()
+        }
+        textViewIdioma.setOnClickListener {
+            cambiarIdioma()
         }
 
     }
@@ -136,6 +138,23 @@ class PerfilActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+        finish()
+    }
+    private fun cambiarIdioma() {
+        // Alterna el idioma entre español y euskera
+        isEuskera = !isEuskera
+        val nuevoIdioma = if (isEuskera) "eu" else "es"
+
+        // Configura el idioma de la aplicación
+        val locale = Locale(nuevoIdioma)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        // Reinicia la actividad para aplicar los cambios de idioma
+        val refreshIntent = Intent(this, PerfilActivity::class.java)
+        startActivity(refreshIntent)
         finish()
     }
 }

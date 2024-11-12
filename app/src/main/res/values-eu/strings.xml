@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Archivo res/values-eu/strings.xml -->
+<resources>
+    <!-- PERFIL -->
+    <string name="perfil_title">PROFILA</string>
+    <string name="nombre_perfil">Izena:</string>
+    <string name="apellido_perfil">Abizena:</string>
+    <string name="fecha_perfil">Data:</string>
+    <string name="email_perfil">Emaila:</string>
+    <string name="color_button">GAIA</string>
+    <string name="idioma_button">ITZULI</string>
+    <string name="cerrar_button">SAIOA ITXI</string>
+    <string name="workouts_button">ARIKETAK</string>
+    <string name="button_translate">ES</string>
+</resources>
