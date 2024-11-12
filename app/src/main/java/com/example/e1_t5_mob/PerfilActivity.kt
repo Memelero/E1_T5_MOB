@@ -1,8 +1,10 @@
 package com.example.e1_t5_mob
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -32,6 +34,10 @@ class PerfilActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfil)
 
+        val sharedPreferences = getSharedPreferences("config", Context.MODE_PRIVATE)
+        val idiomaGuardado = sharedPreferences.getString("idioma", "es")  // Valor predeterminado 'es'
+        cambiarIdioma(idiomaGuardado!!)
+
 
         textViewNombre = findViewById(R.id.textViewNombre)
         textViewApellido = findViewById(R.id.textViewApellido)
@@ -40,6 +46,7 @@ class PerfilActivity : AppCompatActivity() {
         buttonCerrar = findViewById(R.id.buttonCerrar)
         buttonColor = findViewById(R.id.buttonColor)
         buttonWorkouts = findViewById(R.id.buttonWorkouts)
+        textViewIdioma = findViewById(R.id.textViewIdioma)
 
 
         obtenerDatosSesion()
@@ -57,8 +64,14 @@ class PerfilActivity : AppCompatActivity() {
             toggleFondo()
         }
         textViewIdioma.setOnClickListener {
-            cambiarIdioma()
+            if (isEuskera) {
+                cambiarIdioma("es")  // Cambiar a español
+            } else {
+                cambiarIdioma("eu")  // Cambiar a euskera
+            }
+            isEuskera = !isEuskera  // Alternar idioma
         }
+
 
     }
 
@@ -140,21 +153,29 @@ class PerfilActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-    private fun cambiarIdioma() {
-        // Alterna el idioma entre español y euskera
-        isEuskera = !isEuskera
-        val nuevoIdioma = if (isEuskera) "eu" else "es"
-
-        // Configura el idioma de la aplicación
-        val locale = Locale(nuevoIdioma)
+    private fun cambiarIdioma(idioma: String) {
+        // Cambiar el idioma
+        val locale = Locale(idioma)
         Locale.setDefault(locale)
-        val config = Configuration()
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
 
-        // Reinicia la actividad para aplicar los cambios de idioma
-        val refreshIntent = Intent(this, PerfilActivity::class.java)
-        startActivity(refreshIntent)
+        val config = resources.configuration
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            config.setLocale(locale)
+            createConfigurationContext(config)
+        } else {
+            config.locale = locale
+            resources.updateConfiguration(config, resources.displayMetrics)
+        }
+
+        // Guardar el idioma en SharedPreferences
+        val sharedPreferences = getSharedPreferences("config", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("idioma", idioma)
+        editor.apply()
+
+        // Reiniciar la actividad para aplicar los cambios
+        val intent = Intent(this, PerfilActivity::class.java)
+        startActivity(intent)
         finish()
     }
 }
