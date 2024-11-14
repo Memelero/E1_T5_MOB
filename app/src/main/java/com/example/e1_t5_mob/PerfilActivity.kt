@@ -154,28 +154,31 @@ class PerfilActivity : AppCompatActivity() {
         finish()
     }
     private fun cambiarIdioma(idioma: String) {
-        // Cambiar el idioma
-        val locale = Locale(idioma)
-        Locale.setDefault(locale)
-
-        val config = resources.configuration
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            config.setLocale(locale)
-            createConfigurationContext(config)
-        } else {
-            config.locale = locale
-            resources.updateConfiguration(config, resources.displayMetrics)
-        }
-
-        // Guardar el idioma en SharedPreferences
+        // Verificar si el idioma actual es diferente al que se quiere
         val sharedPreferences = getSharedPreferences("config", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("idioma", idioma)
-        editor.apply()
+        val idiomaGuardado = sharedPreferences.getString("idioma", "es")  // Valor predeterminado 'es'
 
-        // Reiniciar la actividad para aplicar los cambios
-        val intent = Intent(this, PerfilActivity::class.java)
-        startActivity(intent)
-        finish()
+        if (idioma != idiomaGuardado) {
+            // Cambiar el idioma
+            val locale = Locale(idioma)
+            Locale.setDefault(locale)
+
+            val config = resources.configuration
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                config.setLocale(locale)
+                createConfigurationContext(config)
+            } else {
+                config.locale = locale
+                resources.updateConfiguration(config, resources.displayMetrics)
+            }
+
+            // Guardar el nuevo idioma en SharedPreferences
+            val editor = sharedPreferences.edit()
+            editor.putString("idioma", idioma)
+            editor.apply()
+
+            // Reiniciar la actividad para aplicar los cambios de idioma
+            recreate()  // Esto recargará la actividad con el nuevo idioma
+        }
     }
 }

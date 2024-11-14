@@ -12,4 +12,45 @@
     <string name="cerrar_button">SAIOA ITXI</string>
     <string name="workouts_button">ARIKETAK</string>
     <string name="button_translate">ES</string>
+
+    <!-- MAIN -->
+    <string name="app_name">E1T5_MOB</string>
+    <string name="registrarse_button">ERREGISTRATU</string>
+    <string name="login_button">SAIOA HASI</string>
+
+    <!-- REGISTRO -->
+    <string name="logo_description">Logoa</string>
+    <string name="registro_title">ERREGISTROA</string>
+    <string name="nombre_label">Izena:</string>
+    <string name="edit_text_hint">Idatzi zure izena</string>
+    <string name="apellido_label">Abizena:</string>
+    <string name="edit_text_hint2">Idatzi zure abizena</string>
+    <string name="fecha_label">Jaiotze Data:</string>
+    <string name="edit_text_hint3">Idatzi zure jaiotze data</string>
+    <string name="email_label">Emaila:</string>
+    <string name="edit_text_hint4">Idatzi zure emaila</string>
+    <string name="contraseña_label">Pasahitza:</string>
+    <string name="edit_text_hint5">Idatzi zure pasahitza</string>
+    <string name="registrarse1_button">ERREGISTRATU</string>
+    <string name="cuenta_label">Jada kontua duzu?</string>
+    <string name="login1_button">SAIOA HASI</string>
+
+    <!-- LOGIN -->
+    <string name="email_label2">Emaila:</string>
+    <string name="contraseña_label2">Pasahitza:</string>
+    <string name="login_title">SAIOA HASI</string>
+    <string name="edit_text_hint1.1">Idatzi zure emaila</string>
+    <string name="edit_text_hint2.2">Idatzi zure pasahitza</string>
+    <string name="login2_button">SAIOA HASI</string>
+    <string name="pregunta_login">Ez duzu konturik?</string>
+    <string name="registro_button">ERREGISTRATU</string>
+
+    <!-- WORKOUTS -->
+    <string name="workout_title">ARIKETAK</string>
+    <string name="workoutHistorial_title">ARIKETEN HISTORIALA</string>
+    <string name="perfil_button">PROFILA</string>
+    <string name="jolastu_button">JOLASTU</string>
+    <string name="entrenatzailea_button">ENTRENATZAILEA</string>
+    <string name="itzuli_button">ITZULI</string>
+
 </resources>
